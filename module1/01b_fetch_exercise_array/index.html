@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fetch | Working With Data & APIs in JavaScript</title>
+</head>
+<body>
+    <h2>Fetch multiple images</h2>
+    <script>
+        console.log("about to fetch some images");
+        const filenames = [
+        'images/daniele-levis-pelusi-311027-unsplash.jpg',
+        'images/guy-stevens-746794-unsplash.jpg',
+        'images/sharon-pittaway-98257-unsplash.jpg'
+        ];
+        
+        async function catchImages(filenames) {
+            for( let filename of filenames) {
+                const response = await fetch(filename);
+                const blob =  await response.blob();
+                const img = document.createElement('img');
+                img.src = URL.createObjectURL(blob);
+                img.width =  '200';
+                document.body.append(img);
+            }
+        }
+
+        catchImages(filenames)
+        .then(res => console.log('yey'))
+        .catch(error => console.log('Error!', error));
+    </script>
+</body>
+</html>

@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fetch | Working With Data & APIs in JavaScript</title>
+</head>
+<body>
+    <h2>Fetch a rainbow</h2>
+    <img src="" id="rainbow" alt="rainbow" width="480">
+    <script>
+        console.log('about to fetch a rainbow');
+        catchRainbow()
+        .then(res => console.log('yey'))
+        .catch(error => console.log("Error!", error));
+        
+        async function catchRainbow() {
+            let response = await fetch('rainbow.jpg');
+            let blob =  await response.blob();
+            document.getElementById('rainbow').src = URL.createObjectURL(blob);
+        }
+    </script>
+</body>
+</html>
+
